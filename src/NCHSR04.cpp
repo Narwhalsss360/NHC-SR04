@@ -13,6 +13,7 @@ uint16_t SR04::ping()
     delayMicroseconds(SENSOR_TRIGGER_TIME);
     digitalWrite(triggerPin, LOW);
     time = pulseIn(echoPin, HIGH, maxTime);
+    return time;
 }
 
 double SR04::millimeters(bool doPing = true)
