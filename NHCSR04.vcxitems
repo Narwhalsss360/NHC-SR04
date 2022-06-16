@@ -20,6 +20,10 @@
   </ItemGroup>
   <ItemGroup>
     <!-- <ClInclude Include="$(MSBuildThisFileDirectory)NHCSR04.h" /> -->
+    <None Include="$(MSBuildThisFileDirectory)examples\BasicDistance\BasicDistance.ino" />
+    <None Include="$(MSBuildThisFileDirectory)examples\MaxDistance\MaxDistance.ino" />
+    <None Include="$(MSBuildThisFileDirectory)examples\Pinging\Pinging.ino" />
+    <None Include="$(MSBuildThisFileDirectory)README.md" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)src\NHCSR04.cpp" />

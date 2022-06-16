@@ -5,10 +5,10 @@
       <Filter>Header Files</Filter>
     </Text>
     <Text Include="$(MSBuildThisFileDirectory)..\..\..\Car-Proximity-Warning\NHC-SR04\keywords.txt">
-      <Filter>Library metdata</Filter>
+      <Filter>Library metadata</Filter>
     </Text>
     <Text Include="$(MSBuildThisFileDirectory)library.properties">
-      <Filter>Library metdata</Filter>
+      <Filter>Library metadata</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
@@ -18,13 +18,30 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{689eba5b-2d3f-443e-8f59-29e27263a7a2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Library metdata">
+    <Filter Include="Library metadata">
       <UniqueIdentifier>{027ac5c4-06db-44b6-9f4c-eb4e95c87019}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Examples">
+      <UniqueIdentifier>{52881555-df3c-4d3a-abdf-3853f8d0cee5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)src\NHCSR04.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)README.md">
+      <Filter>Library metadata</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)examples\BasicDistance\BasicDistance.ino">
+      <Filter>Examples</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)examples\MaxDistance\MaxDistance.ino">
+      <Filter>Examples</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)examples\Pinging\Pinging.ino">
+      <Filter>Examples</Filter>
+    </None>
   </ItemGroup>
 </Project>
