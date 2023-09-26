@@ -1,36 +1,33 @@
 #include "NHCSR04.h"
 
-SR04::SR04(byte _triggerPin, byte _echoPin, uint16_t maxCentimeters = DEFAULT_MAX)
-    :triggerPin(_triggerPin), echoPin(_echoPin), maxTime((maxCentimeters * SENSOR_CM) + MICROS_OFFSET)
+uint16_t SR04::microsecondsTimeoutOffset = 3184;
+
+SR04::SR04(byte trigger, byte echo, uint16_t maxCentimeters)
+    :maxCentimeters(maxCentimeters), sensorFactor(1.0/58.0), cmOffset(1.5), trigger(trigger), echo(echo)
 {
-    pinMode(triggerPin, OUTPUT);
-    pinMode(echoPin, INPUT);
+    pinMode(trigger, OUTPUT);
+    pinMode(echo, INPUT);
 }
 
-uint16_t SR04::ping()
+uint64_t SR04::ping()
 {
-    digitalWrite(triggerPin, HIGH);
+    digitalWrite(trigger, HIGH);
     delayMicroseconds(SENSOR_TRIGGER_TIME);
-    digitalWrite(triggerPin, LOW);
-    time = pulseIn(echoPin, HIGH, maxTime);
-    return time;
+    digitalWrite(trigger, LOW);
+    pulseTime = pulseIn(echo, HIGH, (maxCentimeters / sensorFactor) + microsecondsTimeoutOffset);
+    return pulseTime;
 }
 
-double SR04::millimeters(bool doPing = true)
+double SR04::centimeters(bool doPing)
 {
     if (doPing)
         ping();
-    if (time == 0)
-        return (maxTime - MICROS_OFFSET) / SENSOR_MM;
-    return time / SENSOR_MM;
+    if (pulseTime == 0)
+        return maxCentimeters;
+    return (pulseTime * sensorFactor) + cmOffset;
 }
 
-double SR04::centimeters(bool doPing = true)
+double SR04::inches(bool doPing)
 {
-    return millimeters(doPing) * MM_CM;
-}
-
-double SR04::inches(bool doPing = true)
-{
-    return millimeters(doPing) * MM_IN;
+    return centimeters(doPing) * 2.54;
 }
