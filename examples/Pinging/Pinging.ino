@@ -1,5 +1,7 @@
 #include <NHCSR04.h>
 
+int maxCentimeters = 500; //Default is 100cm. This is to prevent too long ping
+
 int baudrate = 9600;
 
 int triggerPin = 2;
